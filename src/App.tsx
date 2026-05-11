@@ -15,6 +15,7 @@ import PublicRoute from "./routes/PublicRoute";
 import { ToastContainer } from "react-toastify";
 import AdminRoute from "./routes/AdminRoute";
 import { Navigate } from "react-router-dom";
+import ProductDetails from "./pages/ProductDetails";
 export default function App() {
   return (
     <>
@@ -58,6 +59,14 @@ export default function App() {
         />
 
         <Route path="*" element={<Navigate to="/login" />} />
+        <Route
+          path="/product/:id"
+          element={
+            <ProtectedRoute>
+              <ProductDetails />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );
