@@ -13,6 +13,8 @@ import { useNavigate } from "react-router-dom";
 
 import type { ProductType } from "../types/productTypes";
 
+import { useCart } from "../context/CartContext";
+
 type ProductCardProps = {
   product: ProductType;
 };
@@ -20,22 +22,12 @@ type ProductCardProps = {
 export default function ProductCard({ product }: ProductCardProps) {
   const navigate = useNavigate();
 
+  const { addToCart } = useCart();
+
   const handleAddToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
 
-    const existingCart = JSON.parse(localStorage.getItem("cartItems") || "[]");
-
-    const alreadyExists = existingCart.find(
-      (item: ProductType) => item.id === product.id,
-    );
-
-    if (alreadyExists) {
-      return;
-    }
-
-    existingCart.push(product);
-
-    localStorage.setItem("cartItems", JSON.stringify(existingCart));
+    addToCart(product);
   };
 
   return (
