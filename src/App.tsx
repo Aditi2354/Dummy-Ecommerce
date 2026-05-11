@@ -17,6 +17,8 @@ import AdminRoute from "./routes/AdminRoute";
 import { Navigate } from "react-router-dom";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
+import OrderSuccess from "./pages/OrderSuccess";
+import Checkout from "./pages/Checkout";
 export default function App() {
   return (
     <>
@@ -73,6 +75,22 @@ export default function App() {
           element={
             <ProtectedRoute>
               <Cart />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/order-success"
+          element={
+            <ProtectedRoute>
+              <OrderSuccess />
             </ProtectedRoute>
           }
         />
