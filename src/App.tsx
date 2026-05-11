@@ -16,6 +16,7 @@ import { ToastContainer } from "react-toastify";
 import AdminRoute from "./routes/AdminRoute";
 import { Navigate } from "react-router-dom";
 import ProductDetails from "./pages/ProductDetails";
+import Cart from "./pages/Cart";
 export default function App() {
   return (
     <>
@@ -64,6 +65,14 @@ export default function App() {
           element={
             <ProtectedRoute>
               <ProductDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <Cart />
             </ProtectedRoute>
           }
         />

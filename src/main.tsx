@@ -13,7 +13,7 @@ import {
 } from "./context/AuthContext";
 
 import "react-toastify/dist/ReactToastify.css";
-
+import CartProvider from "./context/CartContext";
 ReactDOM.createRoot(
   document.getElementById("root")!
 ).render(
@@ -24,7 +24,11 @@ ReactDOM.createRoot(
 
       <AuthProvider>
 
-        <App />
+        <CartProvider>
+
+          <App />
+
+        </CartProvider>
 
       </AuthProvider>
 

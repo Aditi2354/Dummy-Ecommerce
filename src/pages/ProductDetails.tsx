@@ -13,14 +13,14 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { products } from "../data/product";
 
-import type { ProductType } from "../types/productTypes";
-
-import { toast } from "react-toastify";
+import { useCart } from "../context/CartContext";
 
 export default function ProductDetails() {
   const { id } = useParams();
 
   const navigate = useNavigate();
+
+  const { addToCart } = useCart();
 
   const productId = Number(id);
 
@@ -62,22 +62,7 @@ export default function ProductDetails() {
   }
 
   const handleAddToCart = () => {
-    const existingCart = JSON.parse(localStorage.getItem("cartItems") || "[]");
-
-    const alreadyExists = existingCart.find(
-      (item: ProductType) => item.id === product.id,
-    );
-
-    if (alreadyExists) {
-      toast.info("Product already in cart");
-      return;
-    }
-
-    existingCart.push(product);
-
-    localStorage.setItem("cartItems", JSON.stringify(existingCart));
-
-    toast.success("Product added to cart");
+    addToCart(product);
   };
 
   return (
