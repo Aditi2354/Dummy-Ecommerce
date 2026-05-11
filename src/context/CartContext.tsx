@@ -23,6 +23,8 @@ interface CartContextType {
 
   decreaseQuantity: (id: number) => void;
 
+  clearCart: () => void;
+
   totalPrice: number;
 
   totalQuantity: number;
@@ -108,6 +110,10 @@ export default function CartProvider({ children }: CartProviderProps) {
     );
   }
 
+  function clearCart() {
+    setCartItems([]);
+  }
+
   const totalPrice = useMemo(() => {
     return cartItems.reduce((total, item) => {
       return total + item.price * item.quantity;
@@ -128,6 +134,7 @@ export default function CartProvider({ children }: CartProviderProps) {
         removeFromCart,
         increaseQuantity,
         decreaseQuantity,
+        clearCart,
         totalPrice,
         totalQuantity,
       }}>

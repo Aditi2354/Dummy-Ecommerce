@@ -58,7 +58,7 @@ export default function Cart() {
 
           <Button
             variant="contained"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/checkout")}
             sx={{
               px: 4,
               py: 1.5,
@@ -181,6 +181,7 @@ export default function Cart() {
           <Button
             fullWidth
             variant="contained"
+            onClick={() => navigate("/checkout")}
             sx={{
               py: 1.8,
               borderRadius: "16px",
