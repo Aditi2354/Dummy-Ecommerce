@@ -6,14 +6,17 @@ import {
   Container,
   Grid,
   Rating,
-  Typography,
+  Typography
 } from "@mui/material";
 
-import { useNavigate, useParams } from "react-router-dom";
-
-import { products } from "../data/product";
+import {
+  useNavigate,
+  useParams
+} from "react-router-dom";
 
 import { useCart } from "../context/CartContext";
+
+import { useProduct } from "../context/ProductContext";
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -22,9 +25,13 @@ export default function ProductDetails() {
 
   const { addToCart } = useCart();
 
+  const { products } = useProduct();
+
   const productId = Number(id);
 
-  const product = products.find((item) => item.id === productId);
+  const product = products.find(
+    (item) => item.id === productId
+  );
 
   if (!product) {
     return (
@@ -36,24 +43,30 @@ export default function ProductDetails() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            gap: 2,
-          }}>
+            gap: 2
+          }}
+        >
           <Typography
             variant="h4"
             sx={{
-              fontWeight: "bold",
-            }}>
+              fontWeight: 700
+            }}
+          >
             Product Not Found
           </Typography>
 
           <Button
             variant="contained"
-            onClick={() => navigate("/")}
+            onClick={() =>
+              navigate("/")
+            }
             sx={{
-              background: "linear-gradient(135deg, #ff416c, #ff4b2b)",
+              background:
+                "linear-gradient(135deg, #ff416c, #ff4b2b)",
               borderRadius: "12px",
-              px: 4,
-            }}>
+              px: 4
+            }}
+          >
             Back To Home
           </Button>
         </Box>
@@ -66,19 +79,29 @@ export default function ProductDetails() {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ py: 5 }}>
+    <Container
+      maxWidth="lg"
+      sx={{
+        py: 5
+      }}
+    >
       <Card
         sx={{
           p: 4,
           borderRadius: "24px",
-          boxShadow: 5,
-        }}>
-        <Grid container spacing={4}>
+          boxShadow: 5
+        }}
+      >
+        <Grid
+          container
+          spacing={4}
+        >
           <Grid
-            size={{
-              xs: 12,
-              md: 6,
-            }}>
+            item
+            component="div"
+            xs={12}
+            md={6}
+          >
             <Box
               component="img"
               src={product.image}
@@ -88,29 +111,32 @@ export default function ProductDetails() {
                 borderRadius: "20px",
                 height: {
                   xs: 300,
-                  md: 500,
+                  md: 500
                 },
-                objectFit: "cover",
+                objectFit: "cover"
               }}
             />
           </Grid>
 
           <Grid
-            size={{
-              xs: 12,
-              md: 6,
-            }}>
+            item
+            component="div"
+            xs={12}
+            md={6}
+          >
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                gap: 3,
-              }}>
+                gap: 3
+              }}
+            >
               <Typography
                 variant="h4"
                 sx={{
-                  fontWeight: "bold",
-                }}>
+                  fontWeight: 700
+                }}
+              >
                 {product.title}
               </Typography>
 
@@ -118,24 +144,37 @@ export default function ProductDetails() {
                 label={product.category}
                 sx={{
                   width: "fit-content",
-                  background: "linear-gradient(135deg, #ff416c, #ff4b2b)",
-                  color: "white",
-                  fontWeight: "bold",
+                  background:
+                    "linear-gradient(135deg, #ff416c, #ff4b2b)",
+                  color: "#fff",
+                  fontWeight: 700
                 }}
               />
 
               <Box>
-                <Rating value={product.rating} precision={0.5} readOnly />
+                <Rating
+                  value={product.rating}
+                  precision={0.5}
+                  readOnly
+                />
 
-                <Typography variant="body2">{product.rating} Rating</Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    mt: 1
+                  }}
+                >
+                  {product.rating} Rating
+                </Typography>
               </Box>
 
               <Typography
                 variant="h4"
                 sx={{
-                  fontWeight: "bold",
-                  color: "#ff416c",
-                }}>
+                  fontWeight: 700,
+                  color: "#ff416c"
+                }}
+              >
                 ₹ {product.price}
               </Typography>
 
@@ -143,26 +182,31 @@ export default function ProductDetails() {
                 variant="body1"
                 color="text.secondary"
                 sx={{
-                  lineHeight: 1.8,
-                }}>
+                  lineHeight: 1.8
+                }}
+              >
                 {product.description}
               </Typography>
 
               <Button
                 variant="contained"
-                onClick={handleAddToCart}
+                onClick={
+                  handleAddToCart
+                }
                 sx={{
                   mt: 2,
                   py: 1.5,
                   borderRadius: "14px",
-                  fontWeight: "bold",
+                  fontWeight: 700,
                   fontSize: "16px",
-                  background: "linear-gradient(135deg, #ff416c, #ff4b2b)",
+                  background:
+                    "linear-gradient(135deg, #ff416c, #ff4b2b)",
 
                   "&:hover": {
-                    opacity: 0.9,
-                  },
-                }}>
+                    opacity: 0.9
+                  }
+                }}
+              >
                 Add To Cart
               </Button>
             </Box>

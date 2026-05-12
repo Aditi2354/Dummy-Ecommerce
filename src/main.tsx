@@ -14,6 +14,7 @@ import {
 
 import "react-toastify/dist/ReactToastify.css";
 import CartProvider from "./context/CartContext";
+import { ProductProvider } from "./context/ProductContext";
 ReactDOM.createRoot(
   document.getElementById("root")!
 ).render(
@@ -24,11 +25,15 @@ ReactDOM.createRoot(
 
       <AuthProvider>
 
-        <CartProvider>
+        <ProductProvider>
+
+          <CartProvider>
 
           <App />
 
-        </CartProvider>
+          </CartProvider>
+
+        </ProductProvider>
 
       </AuthProvider>
 
