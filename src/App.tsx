@@ -19,6 +19,7 @@ import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import OrderSuccess from "./pages/OrderSuccess";
 import Checkout from "./pages/Checkout";
+import Orders from "./pages/Orders";
 export default function App() {
   return (
     <>
@@ -91,6 +92,14 @@ export default function App() {
           element={
             <ProtectedRoute>
               <OrderSuccess />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            <ProtectedRoute>
+              <Orders />
             </ProtectedRoute>
           }
         />
