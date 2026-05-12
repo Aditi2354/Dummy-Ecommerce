@@ -4,13 +4,14 @@ import {
   Typography,
   Button,
   Box,
-  Avatar,
   Chip,
   Badge,
   IconButton,
 } from "@mui/material";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+
+import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 
 import { useAuth } from "../context/AuthContext";
 
@@ -48,11 +49,12 @@ export default function Navbar() {
           justifyContent: "space-between",
           py: 1,
           gap: 2,
+          flexWrap: "wrap",
         }}>
         <Typography
           variant="h5"
           sx={{
-            fontWeight: "bold",
+            fontWeight: 700,
             letterSpacing: 1,
             cursor: "pointer",
           }}
@@ -69,7 +71,7 @@ export default function Navbar() {
           }}>
           <Typography
             sx={{
-              fontWeight: "500",
+              fontWeight: 500,
             }}>
             Welcome {user?.name}
           </Typography>
@@ -80,10 +82,28 @@ export default function Navbar() {
               sx={{
                 backgroundColor: "white",
                 color: "#ff416c",
-                fontWeight: "bold",
+                fontWeight: 700,
               }}
             />
           )}
+
+          <Button
+            startIcon={<ReceiptLongIcon />}
+            onClick={() => navigate("/orders")}
+            sx={{
+              color: "white",
+              textTransform: "none",
+              fontWeight: 700,
+              border: "1px solid white",
+              borderRadius: "25px",
+              px: 2,
+
+              "&:hover": {
+                backgroundColor: "rgba(255,255,255,0.1)",
+              },
+            }}>
+            My Orders
+          </Button>
 
           <IconButton
             onClick={() => navigate("/cart")}
@@ -104,7 +124,7 @@ export default function Navbar() {
               borderRadius: "25px",
               px: 3,
               textTransform: "none",
-              fontWeight: "bold",
+              fontWeight: 700,
 
               "&:hover": {
                 backgroundColor: "#f5f5f5",
